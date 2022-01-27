@@ -11,7 +11,7 @@
             <xpath expr="//field[@name='vendor_bill_id']" position="replace">
                 <!-- Add your fields or attributes here -->
               <field name="vendor_bill_id" invisible="1"/>
-              <field name="invoice_ids" widget="many2many_tags"/>
+              <field name="vendor_invoice_ids" widget="many2many_tags"/>
 
               <button name="load_invoices" type="object" string="Load Invoices"/>
             </xpath>

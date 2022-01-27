@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "destination_cost_by_invoice",
+    'name': "Destination Cost By Invoice",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Grow IT",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['stock_landed_costs'],
 
     # always loaded
     'data': [

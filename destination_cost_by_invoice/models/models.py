@@ -5,13 +5,13 @@ from odoo import models, fields, api
 class StockLandedCost(models.Model):
     _inherit = 'stock.landed.cost'
 
-    invoice_ids = fields.Many2many(
+    vendor_invoice_ids = fields.Many2many(
         comodel_name='account.move',
         string='Invoices', domain="[('state', 'not in', ('draft', 'cancel'))]")
 
     def load_invoices(self):
 
-        for invoice in self.invoice_ids:
+        for invoice in self.vendor_invoice_ids:
 
             products = invoice.invoice_line_ids.filtered(lambda r: r.is_landed_costs_line)
 
