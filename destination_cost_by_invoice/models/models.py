@@ -22,6 +22,7 @@ class StockLandedCost(models.Model):
                     'account_id': product.account_id.id,
                     'product_id': product.product_id.id,
                     'price_unit': product.price_unit,
-                    'split_method': 'equal'
+                    'split_method': 'equal',
+                    'name': product.name
                 })
 
