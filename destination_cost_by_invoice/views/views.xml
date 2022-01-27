@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="destination_cost_by_invoice.list">
+      <field name="name">destination_cost_by_invoice list</field>
+      <field name="model">destination_cost_by_invoice.destination_cost_by_invoice</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="destination_cost_by_invoice.action_window">
+      <field name="name">destination_cost_by_invoice window</field>
+      <field name="res_model">destination_cost_by_invoice.destination_cost_by_invoice</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="destination_cost_by_invoice.action_server">
+      <field name="name">destination_cost_by_invoice server</field>
+      <field name="model_id" ref="model_destination_cost_by_invoice_destination_cost_by_invoice"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="destination_cost_by_invoice" id="destination_cost_by_invoice.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="destination_cost_by_invoice.menu_1" parent="destination_cost_by_invoice.menu_root"/>
+    <menuitem name="Menu 2" id="destination_cost_by_invoice.menu_2" parent="destination_cost_by_invoice.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="destination_cost_by_invoice.menu_1_list" parent="destination_cost_by_invoice.menu_1"
+              action="destination_cost_by_invoice.action_window"/>
+    <menuitem name="Server to list" id="destination_cost_by_invoice" parent="destination_cost_by_invoice.menu_2"
+              action="destination_cost_by_invoice.action_server"/>
+-->
+  </data>
+</odoo>
