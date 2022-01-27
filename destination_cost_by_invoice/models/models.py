@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class StockLandedCost(models.Model):
     _inherit = 'stock.landed.cost'
 
-    vendor_invoice_ids = fields.Many2many(
+    invoice_ids = fields.Many2many(
         comodel_name='account.move',
         string='Invoices', domain="[('state', 'not in', ('draft', 'cancel'))]")
 
@@ -23,3 +23,4 @@ class StockLandedCost(models.Model):
                     'product_id': product.product_id.id,
                     'price_unit': product.price_unit
                 })
+
