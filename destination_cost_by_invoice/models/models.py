@@ -11,7 +11,7 @@ class StockLandedCost(models.Model):
 
     def load_invoices(self):
 
-        for invoice in self.vendor_invoice_ids:
+        for invoice in self.invoice_ids:
 
             products = invoice.invoice_line_ids.filtered(lambda r: r.is_landed_costs_line)
 
