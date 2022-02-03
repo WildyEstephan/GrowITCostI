@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Destination Cost By Invoice",
+    'name': "Destination Cost By Purchase",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -11,7 +11,7 @@
     """,
 
     'author': "Grow IT",
-    'website': "http://www.yourcompany.com",
+    'website': "http://www.growit.com.do",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock_landed_costs', 'account'],
+    'depends': ['stock_landed_costs', 'purchase.order'],
 
     # always loaded
     'data': [
