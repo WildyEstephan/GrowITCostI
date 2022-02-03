@@ -61,7 +61,6 @@ class PurchaseInformationLine(models.Model):
     ordered_qty = fields.Float(string='Ordered Qty', digits='Product Unit of Measure', compute="_compute_qty_received_product_qty")
     amount_total = fields.Monetary(string='Total', store=True, related="purchase_id.amount_total")
 
-    @api.multi
     @api.depends('purchase_id')
     def _compute_qty_received_product_qty(self):
 
