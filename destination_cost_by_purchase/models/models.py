@@ -60,6 +60,7 @@ class PurchaseInformationLine(models.Model):
         string='Received Qty', digits='Product Unit of Measure', compute="_compute_qty_received_product_qty")
     ordered_qty = fields.Float(string='Ordered Qty', digits='Product Unit of Measure', compute="_compute_qty_received_product_qty")
     amount_total = fields.Monetary(string='Total', store=True, related="purchase_id.amount_total")
+    currency_id = fields.Many2one('res.currency', 'Currency', store=True, related="purchase_id.currency_id")
 
     @api.depends('purchase_id')
     def _compute_qty_received_product_qty(self):
