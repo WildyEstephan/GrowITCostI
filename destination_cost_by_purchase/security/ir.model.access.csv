@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_destination_cost_by_purchase,destination_cost_by_invoice.destination_cost_by_purchse,destination_cost_by_purchase.model_purchase_information_line,purchase.group_purchase_user ,1,1,1,1
+access_destination_cost_by_purchase,destination_cost_by_invoice.destination_cost_by_purchse,destination_cost_by_purchase.model_purchase_information_line,purchase.group_purchase_user,1,1,1,1
