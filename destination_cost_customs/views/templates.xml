@@ -80,7 +80,7 @@
         <report
             id="stock_landed_cost_report"
             model="stock.landed.cost"
-            string="Invoices"
+            string="Customs Clearance"
             name="destination_cost_customs.stock_landed_cost_report_template_custom"
             report_type="qweb-pdf"
             attachment="('Customs Clearance - %s.pdf' % (object.name))"
