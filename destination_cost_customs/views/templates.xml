@@ -1,17 +1,5 @@
 <odoo>
     <data>
-
-        <!-- QWeb Reports -->
-        <!-- NAME & FILE_NAME should be the same -->
-        <report
-            id="stock_landed_cost_report"
-            model="stock.landed.cost"
-            report_type="qweb-pdf"
-            string="Customs Clearance"
-            name="stock_landed_cost_report_template"
-            file="('Customs Clearance - %s.pdf' % (object.name))"
-        />
-
         <template id="stock_landed_cost_report_template">
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
@@ -78,7 +66,16 @@
             </t>
         </template>
 
-
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+            id="stock_landed_cost_report"
+            model="stock.landed.cost"
+            report_type="qweb-pdf"
+            string="Customs Clearance"
+            name="stock_landed_cost_report_template"
+            file="('Customs Clearance - %s.pdf' % (object.name))"
+        />
 
     </data>
 </odoo>
