@@ -21,7 +21,7 @@ class StockLandedCost(models.Model):
             for purchase in rec.purchase_ids:
 
                 for picking in purchase.picking_ids:
-                    rec.picking_ids = (4, picking.id)
+                    rec.picking_ids = [(4, picking.id)]
 
     def load_purchases(self):
 
