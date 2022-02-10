@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="stock_landed_cost_report_template">
+        <template id="stock_landed_cost_report_template_custom">
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
                 <!-- <t t-call="report.external_layout"> -->
@@ -73,7 +73,7 @@
             model="stock.landed.cost"
             report_type="qweb-pdf"
             string="Customs Clearance"
-            name="stock_landed_cost_report_template"
+            name="stock_landed_cost_report_template_custom"
             file="('Customs Clearance - %s.pdf' % (object.name))"
         />
 
