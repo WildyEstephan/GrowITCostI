@@ -14,6 +14,15 @@ class StockLandedCost(models.Model):
         string='Purchase Order Information',
         required=False)
 
+    @api.onchange('purchase_ids')
+    def _onchange_purchase_ids(self):
+
+        for rec in self:
+            for purchase in rec.purchase_ids:
+
+                for picking in purchase.picking_ids:
+                    rec.picking_ids = (4, picking.id)
+
     def load_purchases(self):
 
         for purchase in self.purchase_ids:
@@ -26,15 +35,18 @@ class StockLandedCost(models.Model):
                     'purchase_id': picking.purchase_id.id,
                     'partner_id': picking.purchase_id.partner_id.id,
                 })
-                #
-                # self.env['stock.landed.cost.lines'].create({
-                #     'cost_id': self.id,
-                #     'account_id': purchase.account_id.id,
-                #     'product_id': purchase.product_id.id,
-                #     'price_unit': purchase.price_unit,
-                #     'split_method': 'equal',
-                #     'name': purchase.name
-                # })
+
+            # for line in purchase.order_line:
+            #     if line.product_id.landed_cost_ok:
+            #
+            #         self.env['stock.landed.cost.lines'].create({
+            #             'cost_id': self.id,
+            #             'account_id': line.account_id.id,
+            #             'product_id': purchase.product_id.id,
+            #             'price_unit': purchase.price_unit,
+            #             'split_method': 'equal',
+            #             'name': purchase.name
+            #         })
 
 class PurchaseInformationLine(models.Model):
     _name = 'purchase.information.line'

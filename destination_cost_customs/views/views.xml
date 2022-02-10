@@ -1,0 +1,32 @@
+<odoo>
+  <data>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_stock_landed_cost_form_inherit_destination_cost_customs" model="ir.ui.view">
+        <field name="name">view_stock_landed_cost_form_inherit_destination_cost_customs</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='picking_ids']" position="after">
+                <field name="number"/>
+                <field name="manifest"/>
+            </xpath>
+
+            <xpath expr="//field[@name='account_journal_id']" position="after">
+                <field name="usd_rate"/>
+            </xpath>
+
+            <xpath expr="//field[@name='amount_total']" position="replace">
+                <field name="FOBUSD" widget="monetary"/>
+                <field name="FOBDOP" widget="monetary"/>
+                <field name="amount_total" widget="monetary" string="Costs"/>
+                <field name="amount_total_total" widget="monetary"/>
+                <field name="cost_factor" widget="monetary"/>
+            </xpath>
+
+        </field>
+    </record>
+
+  </data>
+</odoo>
