@@ -10,19 +10,19 @@ class StockLandedCost(models.Model):
         required=False, digits=0)
     FOBUSD = fields.Float(
         string='FOB-USD', 
-        required=False, digits=0, compute="_compute_FOBUSD")
+        required=False, digits=0, compute="_compute_get_totals")
     FOBDOP = fields.Float(
         string='FOB-DOP',
-        required=False, digits=0, compute="_compute_FOBDOP")
+        required=False, digits=0, compute="_compute_get_totals")
     amount_total_total = fields.Float(
         string='Total Amount',
-        required=False, digits=0, compute="_compute_amount_total_total")
+        required=False, digits=0, compute="_compute_get_totals")
     cost_by_dop = fields.Float(
         string='Cost by DOP',
-        required=False, digits=0, compute="_compute_cost_by_dop")
+        required=False, digits=0, compute="_compute_get_totals")
     cost_factor = fields.Float(
         string='Cost Factor',
-        required=False, digits=0, compute="_compute_cost_factor")
+        required=False, digits=0, compute="_compute_get_totals")
     number = fields.Char(
         string='Number', 
         required=False)
@@ -30,44 +30,25 @@ class StockLandedCost(models.Model):
         string='Manifest', 
         required=False)
 
-    @api.depends('purchase_ids')
-    def _compute_FOBUSD(self):
+    @api.depends('purchase_ids', 'amount_total')
+    def _compute_get_totals(self):
 
         for rec in self:
 
-            total = 0.0
+            FOBUSD_total = 0.0
 
             for purchase in rec.purchase_ids:
-                total = total + purchase.amount_total
+                FOBUSD_total = FOBUSD_total + purchase.amount_total
 
-            rec.FOBUSD = total
+            rec.FOBUSD = FOBUSD_total
 
-    @api.depends('FOBUSD')
-    def _compute_FOBDOP(self):
+            FOBDOP_total = FOBUSD_total * rec.usd_rate
+            rec.FOBDOP = FOBDOP_total
 
-        for rec in self:
+            rec.amount_total_total = rec.amount_total + FOBUSD_total
 
-            rec.FOBDOP = rec.FOBUSD * rec.usd_rate
+            if FOBUSD_total > 0:
+                rec.cost_by_dop = rec.amount_total / FOBUSD_total
 
-    @api.depends('amount_total')
-    def _compute_amount_total_total(self):
-
-        for rec in self:
-
-            rec.amount_total_total = rec.amount_total + rec.FOBDOP
-
-    @api.depends('amount_total')
-    def _compute_cost_by_dop(self):
-
-        for rec in self:
-
-            if rec.FOBUSD > 0:
-                rec.cost_by_dop = rec.amount_total / rec.FOBUSD
-
-
-    
-    def _compute_cost_factor(self):
-        for rec in self:
-
-            if rec.FOBUSD > 0:
-                rec.cost_factor = rec.amount_total_total / rec.FOBUSD
+            if FOBUSD_total > 0:
+                rec.cost_factor = rec.amount_total_total / FOBUSD_total
