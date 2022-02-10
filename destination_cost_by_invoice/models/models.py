@@ -9,7 +9,7 @@ class StockLandedCost(models.Model):
         comodel_name='account.move',
         string='Invoices', domain="[('state', 'not in', ('draft', 'cancel'))]")
     vendor_invoice_line = fields.One2many(
-        comodel_name='stock.landed.cost',
+        comodel_name='account.move',
         inverse_name='cost_id',
         string='Vendor Invoice Line',
         required=False)
@@ -34,7 +34,7 @@ class StockLandedCost(models.Model):
 class Invoice(models.Model):
     _inherit = 'account.move'
 
-    cost_liq_id = fields.Many2one(
+    cost_id = fields.Many2one(
         comodel_name='stock.landed.cost',
         string='Cost',
         required=False)
