@@ -31,6 +31,9 @@ class StockLandedCost(models.Model):
                     'name': product.name
                 })
 
+            invoice.cost_id = self.id
+
+
 class Invoice(models.Model):
     _inherit = 'account.move'
 
