@@ -16,6 +16,14 @@
               <button name="load_invoices" type="object" string="Load Invoices"/>
             </xpath>
 
+            <xpath expr="//notebook/page[2]" position="before">
+                <field name="vendor_invoice_line">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total" sum="Total"/>
+                </field>
+            </xpath>
+
         </field>
     </record>
 

@@ -8,6 +8,11 @@ class StockLandedCost(models.Model):
     vendor_invoice_ids = fields.Many2many(
         comodel_name='account.move',
         string='Invoices', domain="[('state', 'not in', ('draft', 'cancel'))]")
+    vendor_invoice_line = fields.One2many(
+        comodel_name='stock.landed.cost',
+        inverse_name='cost_id',
+        string='Vendor Invoice Line',
+        required=False)
 
     def load_invoices(self):
 
@@ -25,4 +30,13 @@ class StockLandedCost(models.Model):
                     'split_method': 'equal',
                     'name': product.name
                 })
+
+class Invoice(models.Model):
+    _inherit = 'account.move'
+
+    cost_id = fields.Many2one(
+        comodel_name='stock.landed.cost',
+        string='Cost',
+        required=False)
+
 
