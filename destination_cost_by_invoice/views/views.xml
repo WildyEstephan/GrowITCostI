@@ -19,10 +19,12 @@
             <xpath expr="//notebook/page[2]" position="before">
                 <page name="invoices" string="Related Invoices">
                     <field name="vendor_invoice_line">
-                    <field name="name"/>
-                    <field name="partner_id"/>
-                    <field name="amount_total"/>
-                </field>
+                    <tree>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="amount_total"/>
+                        </tree>
+                    </field>
                 </page>
 
             </xpath>
