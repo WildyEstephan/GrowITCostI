@@ -1,24 +1,84 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+            id="stock_landed_cost_report"
+            model="stock.landed.cost"
+            report_type="qweb-pdf"
+            string="Customs Clearance"
+            name="stock_landed_cost_report_template"
+            file="('Customs Clearance - %s.pdf' % (object.name))"
+        />
+
+        <template id="stock_landed_cost_report_template">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                <!-- <t t-call="report.external_layout"> -->
+                    <div class="page">
+
+                        <div id="header_info" class="row mt32 mb32">
+                            <div t-if="o.number" class="col-3 bm-2">
+                                <strong>Number:</strong>
+                                <p t-field="o.number" class="m-0"/>
+                            </div>
+                            <div t-if="o.date" class="col-3 bm-2">
+                                <strong>Date:</strong>
+                                <p t-field="o.date" class="m-0"/>
+                            </div>
+                            <div t-if="o.manifest" class="col-3 bm-2">
+                                <strong>Manifest:</strong>
+                                <p t-field="o.Manifest" class="m-0"/>
+                            </div>
+                        </div>
+
+                        <h2>Customs Clearance</h2>
+
+                        <div id="header_info_2" class="row mt32 mb32">
+                            <div t-if="o.FOBUSD" class="col-3 bm-2">
+                                <strong>FOB-USD:</strong>
+                                <p t-field="o.FOBUSD" class="m-0"/>
+                            </div>
+                            <div t-if="o.FOBDOP" class="col-3 bm-2">
+                                <strong>FOB-DOP:</strong>
+                                <p t-field="o.FOBDOP" class="m-0"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Type of cost</th>
+                                    <th class="text-right">Amount US$</th>
+                                    <th class="text-right">Amount RD$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.cost_lines" t-as="cost_line">
+                                    <td>
+                                        <span t-esc="product_id"/>
+                                    </td>
+                                    <td>
+                                        <t t-set="amount_usd" t-value="line.price_unit * o.usd_rate"/>
+                                        <span t-esc="amount_usd"/></td>
+                                    <td><span t-esc="line.price_unit"/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total</th>
+                                    <th class="text-right">o.amount_total</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </t>
             </t>
-          </dl>
         </template>
--->
+
+
+
     </data>
 </odoo>
