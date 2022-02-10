@@ -30,7 +30,6 @@ class StockLandedCost(models.Model):
         string='Manifest', 
         required=False)
 
-    @api.multi
     @api.depends('purchase_ids')
     def _compute_FOBUSD(self):
 
@@ -43,7 +42,6 @@ class StockLandedCost(models.Model):
 
             rec.FOBUSD = total
 
-    @api.multi
     @api.depends('FOBUSD')
     def _compute_FOBDOP(self):
 
@@ -51,7 +49,6 @@ class StockLandedCost(models.Model):
 
             rec.FOBDOP = rec.FOBUSD * rec.usd_rate
 
-    @api.multi
     @api.depends('amount_total')
     def _compute_amount_total_total(self):
 
@@ -59,7 +56,6 @@ class StockLandedCost(models.Model):
 
             rec.amount_total_total = rec.amount_total + rec.FOBDOP
 
-    @api.multi
     @api.depends('amount_total')
     def _compute_cost_by_dop(self):
 
@@ -68,7 +64,7 @@ class StockLandedCost(models.Model):
             if rec.FOBUSD > 0:
                 rec.cost_by_dop = rec.amount_total / rec.FOBUSD
 
-    @api.multi
+
     @api.depends('amount_total_total')
     def _compute_cost_factor(self):
         for rec in self:
