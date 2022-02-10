@@ -65,7 +65,7 @@ class StockLandedCost(models.Model):
                 rec.cost_by_dop = rec.amount_total / rec.FOBUSD
 
 
-    @api.depends('amount_total_total')
+    
     def _compute_cost_factor(self):
         for rec in self:
 
