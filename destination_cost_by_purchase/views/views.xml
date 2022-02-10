@@ -25,7 +25,7 @@
                             <field name="partner_id"/>
                             <field name="qty_received"/>
                             <field name="ordered_qty"/>
-                            <field name="amount_total"/>
+                            <field name="amount_total" sum="Total"/>
                         </tree>
                         <form>
                             <group>
