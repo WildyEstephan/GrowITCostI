@@ -7,7 +7,7 @@
                 <!-- <t t-call="report.external_layout"> -->
                         <div class="page">
 
-                            <div id="header_info" class="row mt32 mb32">
+                            <div id="header_info" class="row mt32 mb32 text-center">
                                 <div t-if="o.number" class="col-3 bm-2">
                                     <strong>Number:</strong>
                                     <p t-field="o.number" class="m-0"/>
@@ -22,9 +22,9 @@
                                 </div>
                             </div>
 
-                            <h2>Customs Clearance</h2>
+                            <h2 class="text-center">Customs Clearance</h2>
 
-                            <div id="header_info_2" class="row mt32 mb32">
+                            <div id="header_info_2" class="row mt32 mb32 text-center">
                                 <div t-if="o.FOBUSD" class="col-3 bm-2">
                                     <strong>FOB-USD:</strong>
                                     <p t-field="o.FOBUSD" class="m-0"/>
@@ -48,9 +48,16 @@
                                         <td>
                                             <span t-esc="cost_line.product_id"/>
                                         </td>
-                                        <td>
-                                            <t t-set="amount_usd" t-value="cost_line.price_unit * o.usd_rate"/>
-                                            <span t-esc="amount_usd"/></td>
+
+                                            <t t-if="o.usd_rate">
+                                                <td>
+                                                <t t-set="amount_usd" t-value="cost_line.price_unit / o.usd_rate"/>
+                                                <span t-esc="amount_usd"/></td>
+                                            </t>
+                                            <t t-else="">
+                                                <td><span>0</span></td>
+                                            </t>
+
                                         <td><span t-esc="cost_line.price_unit"/></td>
                                     </tr>
                                 </tbody>
