@@ -34,7 +34,7 @@ class StockLandedCost(models.Model):
 class Invoice(models.Model):
     _inherit = 'account.move'
 
-    cost_id = fields.Many2one(
+    cost_liq_id = fields.Many2one(
         comodel_name='stock.landed.cost',
         string='Cost',
         required=False)
