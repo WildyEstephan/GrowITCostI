@@ -6,7 +6,7 @@
                     <t t-foreach="docs" t-as="o">
                 <!-- <t t-call="report.external_layout"> -->
                         <div class="page">
-    
+
                             <div id="header_info" class="row mt32 mb32">
                                 <div t-if="o.number" class="col-3 bm-2">
                                     <strong>Number:</strong>
@@ -46,12 +46,12 @@
                                 <tbody>
                                     <tr t-foreach="o.cost_lines" t-as="cost_line">
                                         <td>
-                                            <span t-esc="product_id"/>
+                                            <span t-esc="cost_line.product_id"/>
                                         </td>
                                         <td>
-                                            <t t-set="amount_usd" t-value="line.price_unit * o.usd_rate"/>
+                                            <t t-set="amount_usd" t-value="cost_line.price_unit * o.usd_rate"/>
                                             <span t-esc="amount_usd"/></td>
-                                        <td><span t-esc="line.price_unit"/></td>
+                                        <td><span t-esc="cost_line.price_unit"/></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
