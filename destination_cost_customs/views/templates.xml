@@ -68,13 +68,22 @@
 
         <!-- QWeb Reports -->
         <!-- NAME & FILE_NAME should be the same -->
+<!--        <report-->
+<!--            id="stock_landed_cost_report"-->
+<!--            model="stock.landed.cost"-->
+<!--            report_type="qweb-pdf"-->
+<!--            string="Customs Clearance"-->
+<!--            name="stock_landed_cost_report_template_custom"-->
+<!--            file="('Customs Clearance - %s.pdf' % (object.name))"-->
+<!--        />-->
+
         <report
             id="stock_landed_cost_report"
             model="stock.landed.cost"
-            report_type="qweb-pdf"
-            string="Customs Clearance"
+            string="Invoices"
             name="stock_landed_cost_report_template_custom"
-            file="('Customs Clearance - %s.pdf' % (object.name))"
+            report_type="qweb-pdf"
+            attachment="('Customs Clearance - %s.pdf' % (object.name))"
         />
 
     </data>
