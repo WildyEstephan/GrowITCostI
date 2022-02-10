@@ -49,6 +49,10 @@ class StockLandedCost(models.Model):
 
             if FOBUSD_total > 0:
                 rec.cost_by_dop = rec.amount_total / FOBUSD_total
+            else:
+                rec.cost_by_dop = 0.0
 
             if FOBUSD_total > 0:
                 rec.cost_factor = rec.amount_total_total / FOBUSD_total
+            else:
+                rec.cost_factor = 0.0
