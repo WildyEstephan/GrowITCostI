@@ -49,14 +49,14 @@
                                             <span t-esc="cost_line.product_id.name"/>
                                         </td>
 
-                                            <t t-if="o.usd_rate">
-                                                <td>
-                                                <t t-set="amount_usd" t-value="cost_line.price_unit / o.usd_rate"/>
-                                                <span t-esc="amount_usd"/></td>
-                                            </t>
-                                            <t t-else="">
-                                                <td><span>0</span></td>
-                                            </t>
+<!--                                        <t t-if="o.usd_rate">-->
+<!--                                            <td>-->
+<!--                                            <t t-set="amount_usd" t-value="cost_line.price_unit / o.usd_rate"/>-->
+<!--                                            <span t-esc="amount_usd"/></td>-->
+<!--                                        </t>-->
+<!--                                        <t t-else="">-->
+<!--                                            <td><span>0</span></td>-->
+<!--                                        </t>-->
 
                                         <td><span t-esc="cost_line.price_unit"/></td>
                                     </tr>
