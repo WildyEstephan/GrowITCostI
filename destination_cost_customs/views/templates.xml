@@ -51,7 +51,8 @@
 
                                             <t t-if="o.usd_rate">
                                                 <td>
-                                                <t t-set="amount_usd" t-value="round(cost_line.price_unit / o.usd_rate)"/>
+                                                <t t-set="price_unit" t-value="cost_line.price_unit"/>
+                                                <t t-set="amount_usd" t-value="round(price_unit / o.usd_rate)"/>
                                                 <span t-esc="amount_usd"/></td>
                                             </t>
                                             <t t-else="">
