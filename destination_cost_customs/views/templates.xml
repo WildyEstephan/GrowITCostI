@@ -10,28 +10,28 @@
                             <div id="header_info" class="row mt32 mb32 text-center">
                                 <div t-if="o.number" class="col-3 bm-2">
                                     <strong>Number:</strong>
-                                    <p t-field="o.number" class="m-0"/>
+                                    <p t-field="o.number"/>
                                 </div>
-                                <div t-if="o.date" class="col-3 bm-2">
+                                <div t-if="o.date">
                                     <strong>Date:</strong>
-                                    <p t-field="o.date" class="m-0"/>
+                                    <p t-field="o.date"/>
                                 </div>
-                                <div t-if="o.manifest" class="col-3 bm-2">
+                                <div t-if="o.manifest" >
                                     <strong>Manifest:</strong>
-                                    <p t-field="o.manifest" class="m-0"/>
+                                    <p t-field="o.manifest" />
                                 </div>
                             </div>
 
                             <h2 class="text-center">Customs Clearance</h2>
 
                             <div id="header_info_2" class="row mt32 mb32 text-center">
-                                <div t-if="o.FOBUSD" class="col-3 bm-2">
+                                <div t-if="o.FOBUSD" >
                                     <strong>FOB-USD:</strong>
-                                    <p t-field="o.FOBUSD" class="m-0"/>
+                                    <p t-field="o.FOBUSD"/>
                                 </div>
-                                <div t-if="o.FOBDOP" class="col-3 bm-2">
+                                <div t-if="o.FOBDOP">
                                     <strong>FOB-DOP:</strong>
-                                    <p t-field="o.FOBDOP" class="m-0"/>
+                                    <p t-field="o.FOBDOP"/>
                                 </div>
                             </div>
 
