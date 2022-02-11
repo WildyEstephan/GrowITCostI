@@ -18,7 +18,7 @@
                                 </div>
                                 <div t-if="o.manifest" class="col-3 bm-2">
                                     <strong>Manifest:</strong>
-                                    <p t-field="o.Manifest" class="m-0"/>
+                                    <p t-field="o.manifest" class="m-0"/>
                                 </div>
                             </div>
 
