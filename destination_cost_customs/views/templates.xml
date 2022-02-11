@@ -62,7 +62,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Total</th>
-                                        <th class="text-right"><span t-esc="o.price_unit"/></th>
+                                        <th class="text-right"><span t-esc="o.amount_total"/></th>
                                     </tr>
                                 </tfoot>
                             </table>
