@@ -10,19 +10,19 @@ class StockLandedCost(models.Model):
         required=False, digits=0)
     FOBUSD = fields.Float(
         string='FOB-USD', 
-        required=False, digits=0, compute="_compute_get_totals")
+        required=False, digits=0, compute="_compute_get_totals", store=True)
     FOBDOP = fields.Float(
         string='FOB-DOP',
-        required=False, digits=0, compute="_compute_get_totals")
+        required=False, digits=0, compute="_compute_get_totals", store=True)
     amount_total_total = fields.Float(
         string='Total Amount',
-        required=False, digits=0, compute="_compute_get_totals")
+        required=False, digits=0, compute="_compute_get_totals", store=True)
     cost_by_dop = fields.Float(
         string='Cost by DOP',
-        required=False, digits=0, compute="_compute_get_totals")
+        required=False, digits=0, compute="_compute_get_totals", store=True)
     cost_factor = fields.Float(
         string='Cost Factor',
-        required=False, digits=0, compute="_compute_get_totals")
+        required=False, digits=0, compute="_compute_get_totals", store=True)
     number = fields.Char(
         string='Number', 
         required=False)
