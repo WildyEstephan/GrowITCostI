@@ -58,7 +58,8 @@
 <!--                                            <td><span>0</span></td>-->
 <!--                                        </t>-->
 
-                                        <td><span t-esc="cost_line.price_unit"/></td>
+<!--                                        <td><span t-esc="cost_line.price_unit"/></td>-->
+                                        <td>Bobo</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
