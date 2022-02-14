@@ -86,7 +86,7 @@
                                         <td>
                                             <span t-att-style="style" t-esc="invoice.name"/>
                                         </td>
-                                        <td><span t-att-style="style" t-esc="invoice.date_invoice_due"/></td>
+                                        <td><span t-att-style="style" t-esc="invoice.invoice_date_due"/></td>
                                         <td><span t-att-style="style" t-esc="invoice.purchase_id.picking_type_id.warehouse_id.name"/></td>
                                         <td><span t-att-style="style" t-esc="invoice.purchase_id.name"/></td>
                                         <td><span t-att-style="style" t-esc="invoice.partner_id.name"/></td>
