@@ -95,31 +95,31 @@
                                 </tbody>
                                 <tr class="border-black o_total">
                                         <td><strong>FOB-USD</strong></td>
-                                        <td class="text-right">
+                                        <td class="text-left">
                                             <span class="text-nowrap" t-field="o.FOBUSD"/>
                                         </td>
                                     </tr>
                                 <tr class="border-black o_total">
                                         <td><strong>FOB-DOP</strong></td>
-                                        <td class="text-right">
+                                        <td class="text-left">
                                             <span class="text-nowrap" t-field="o.FOBDOP"/>
                                         </td>
                                     </tr>
                                 <tr class="border-black o_total">
                                         <td><strong>Costs</strong></td>
-                                        <td class="text-right">
+                                        <td class="text-left">
                                             <span class="text-nowrap" t-field="o.amount_total"/>
                                         </td>
                                     </tr>
                                 <tr class="border-black o_total">
                                         <td><strong>Amount Total</strong></td>
-                                        <td class="text-right">
+                                        <td class="text-left">
                                             <span class="text-nowrap" t-field="o.amount_total_total"/>
                                         </td>
                                     </tr>
                                 <tr class="border-black o_total">
                                         <td><strong>Cost Factor</strong></td>
-                                        <td class="text-right">
+                                        <td class="text-left">
                                             <span class="text-nowrap" t-field="o.cost_factor"/>
                                         </td>
                                     </tr>
@@ -132,17 +132,6 @@
             </t>
         </template>
 
-        <!-- QWeb Reports -->
-        <!-- NAME & FILE_NAME should be the same -->
-<!--        <report-->
-<!--            id="stock_landed_cost_report"-->
-<!--            model="stock.landed.cost"-->
-<!--            report_type="qweb-pdf"-->
-<!--            string="Customs Clearance"-->
-<!--            name="stock_landed_cost_report_template_custom"-->
-<!--            file="('Customs Clearance - %s.pdf' % (object.name))"-->
-<!--        />-->
-
         <report
             id="stock_landed_cost_report"
             model="stock.landed.cost"
@@ -151,6 +140,38 @@
             report_type="qweb-pdf"
             file="('Customs Clearance - %s.pdf' % (object.name))"
         />
+
+        <template id="goods_receipt_report_template">
+            <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                <!-- <t t-call="report.external_layout"> -->
+                        <t t-foreach="o.cost_lines" t-as="cost_line">
+                            <div class="page">
+
+                                <h2 class="text-center">GOODS RECEIPT REPORT</h2>
+
+                                <div id="header_info" class="row mt32 mb32 text-center">
+                                    <div t-if="o.number" class="col-3 bm-2">
+                                        <strong>Number:</strong>
+                                        <p t-field="o.number" class="m-0"/>
+                                    </div>
+                                    <div t-if="o.date" class="col-3 bm-2">
+                                        <strong>Date:</strong>
+                                        <p t-field="o.date" class="m-0"/>
+                                    </div>
+                                    <div t-if="o.manifest" class="col-3 bm-2">
+                                        <strong>Manifest:</strong>
+                                        <p t-field="o.manifest" class="m-0"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
 
     </data>
 </odoo>
