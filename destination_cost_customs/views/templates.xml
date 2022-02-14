@@ -39,8 +39,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Type of cost</th>
-                                        <th class="text-right">Amount US$</th>
-                                        <th class="text-right">Amount RD$</th>
+                                        <th class="text-center">Amount US$</th>
+                                        <th class="text-center">Amount RD$</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,6 +69,62 @@
                                     </tr>
                                 </tfoot>
                             </table>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th>Deadline</th>
+                                        <th>Dest. Warehouse</th>
+                                        <th>PO</th>
+                                        <th>Supplier</th>
+                                        <th>USD$</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.vendor_invoice_line" t-as="invoice">
+                                        <td>
+                                            <span t-att-style="style" t-esc="invoice.name"/>
+                                        </td>
+                                        <td><span t-att-style="style" t-esc="invoice.date_invoice_due"/></td>
+                                        <td><span t-att-style="style" t-esc="invoice.purchase_id.picking_type_id.warehouse_id.name"/></td>
+                                        <td><span t-att-style="style" t-esc="invoice.purchase_id.name"/></td>
+                                        <td><span t-att-style="style" t-esc="invoice.partner_id.name"/></td>
+                                        <td><span t-att-style="style" t-esc="invoice.purchase_id.amount_total"/></td>
+                                    </tr>
+                                </tbody>
+                                <tr class="border-black o_total">
+                                        <td><strong>FOB-USD</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.FOBUSD"/>
+                                        </td>
+                                    </tr>
+                                <tr class="border-black o_total">
+                                        <td><strong>FOB-DOP</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.FOBDOP"/>
+                                        </td>
+                                    </tr>
+                                <tr class="border-black o_total">
+                                        <td><strong>Costs</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                <tr class="border-black o_total">
+                                        <td><strong>Amount Total</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.amount_total_total"/>
+                                        </td>
+                                    </tr>
+                                <tr class="border-black o_total">
+                                        <td><strong>Cost Factor</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.cost_total"/>
+                                        </td>
+                                    </tr>
+                            </table>
+
 
                         </div>
                     </t>
