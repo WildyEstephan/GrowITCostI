@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock_landed_costs', 'destination_cost_by_purchase'],
+    'depends': ['stock_landed_costs', 'destination_cost_by_purchase', 'destination_cost_by_invoice'],
 
     # always loaded
     'data': [

@@ -30,6 +30,18 @@ class StockLandedCost(models.Model):
         string='Manifest', 
         required=False)
 
+    @api.onchange('purchase_ids')
+    def _onchange_purchase_ids(self):
+
+        for rec in self:
+            for purchase in rec.purchase_ids:
+
+                for picking in purchase.picking_ids:
+                    rec.picking_ids = [(4, picking.id)]
+
+                for invoice in purchase.invoice_ids:
+                    rec.vendor_invoice_ids = [(4, invoice.id)]
+
     @api.depends('purchase_ids', 'amount_total')
     def _compute_get_totals(self):
 

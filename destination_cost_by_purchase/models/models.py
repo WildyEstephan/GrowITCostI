@@ -14,15 +14,6 @@ class StockLandedCost(models.Model):
         string='Purchase Order Information',
         required=False)
 
-    @api.onchange('purchase_ids')
-    def _onchange_purchase_ids(self):
-
-        for rec in self:
-            for purchase in rec.purchase_ids:
-
-                for picking in purchase.picking_ids:
-                    rec.picking_ids = [(4, picking.id)]
-
     def load_purchases(self):
 
         for purchase in self.purchase_ids:
