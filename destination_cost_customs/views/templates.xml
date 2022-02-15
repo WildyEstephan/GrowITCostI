@@ -146,25 +146,90 @@
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
                 <!-- <t t-call="report.external_layout"> -->
-                        <t t-foreach="o.cost_lines" t-as="cost_line">
+                        <t t-foreach="o.purchase_ids" t-as="purchase">
                             <div class="page">
 
                                 <h2 class="text-center">GOODS RECEIPT REPORT</h2>
 
                                 <div id="header_info" class="row mt32 mb32 text-center">
-                                    <div t-if="o.number" class="col-3 bm-2">
-                                        <strong>Number:</strong>
-                                        <p t-field="o.number" class="m-0"/>
+                                    <div t-if="purchase.name" class="col-3 bm-2">
+                                        <strong>Receipt Report:</strong>
+                                        <p t-field="purchase.name" class="m-0"/>
                                     </div>
                                     <div t-if="o.date" class="col-3 bm-2">
-                                        <strong>Date:</strong>
+                                        <strong>Report date:</strong>
                                         <p t-field="o.date" class="m-0"/>
                                     </div>
-                                    <div t-if="o.manifest" class="col-3 bm-2">
-                                        <strong>Manifest:</strong>
-                                        <p t-field="o.manifest" class="m-0"/>
+                                    <div t-if="purchase.partner_ref" class="col-3 bm-2">
+                                        <strong>PO International:</strong>
+                                        <p t-field="purchase.partner_ref" class="m-0"/>
+                                    </div>
+                                    <div t-if="purchase.partner_ref" class="col-3 bm-2">
+                                        <strong>PO International:</strong>
+                                        <p t-field="purchase.partner_ref" class="m-0"/>
+                                    </div>
+                                    <div t-if="purchase.date_order" class="col-3 bm-2">
+                                        <strong>Order Date:</strong>
+                                        <p t-field="purchase.date_order" class="m-0"/>
+                                    </div>
+                                    <div t-if="purchase.partner_ref" class="col-3 bm-2">
+                                        <strong>Destination Warehouse:</strong>
+                                        <p t-field="purchase.picking_type_id.warehouse_id.name" class="m-0"/>
+                                    </div>
+                                    <div t-if="purchase.partner_id.name" class="col-3 bm-2">
+                                        <strong>Supplier:</strong>
+                                        <p t-field="purchase.partner_id.name" class="m-0"/>
+                                    </div>
+                                    <div t-if="o.usd_rate" class="col-3 bm-2">
+                                        <strong>Rate:</strong>
+                                        <p t-field="o.usd_rate" class="m-0"/>
+                                    </div>
+                                    <div t-if="purchase.amount_total" class="col-3 bm-2">
+                                        <strong>Total:</strong>
+                                        <p t-field="purchase.amount_total" class="m-0"/>
                                     </div>
                                 </div>
+
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Code/Ref.</th>
+                                            <th>Description</th>
+                                            <th>Qty Ordered</th>
+                                            <th>Qty Received</th>
+                                            <th>Price Unit</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="purchase.order_line" t-as="line">
+                                            <td><span t-esc="line.product_id.default_code"/></td>
+                                            <td><span t-esc="line.name"/></td>
+                                            <td><span t-esc="line.qty_received"/></td>
+                                            <td><span t-esc="line.product_qty"/></td>
+                                            <td><span t-esc="line.price_unit"/></td>
+                                            <td><span t-esc="line.price_subtotal"/></td>
+                                        </tr>
+                                    </tbody>
+                                    <tr class="border-black o_total">
+                                        <td>Items: <span t-esc="len(purchase.order_line)"/> </td>
+                                        <td><strong>Total RD$</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="purchase.amount_total * o.usd_rate"/>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div id="footer_info" class="row mt32 mb32">
+                                    <div class="col-3 bm-2">
+                                        <strong>Processed by:</strong>
+                                        <span t-field="o.create_uid"/>
+                                    </div>
+                                    <div class="col-3 bm-2">
+                                        Date:__________________________________
+                                    </div>
+                                </div>
+
 
                             </div>
                         </t>
@@ -172,6 +237,15 @@
                 </t>
             </t>
         </template>
+
+        <report
+            id="goods_receipt_report"
+            model="stock.landed.cost"
+            string="Customs Clearance"
+            name="destination_cost_customs.goods_receipt_report_template"
+            report_type="qweb-pdf"
+            file="('GOODS RECEIPT REPORT - %s.pdf' % (object.name))"
+        />
 
     </data>
 </odoo>
