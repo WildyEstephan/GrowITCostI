@@ -241,7 +241,7 @@
         <report
             id="goods_receipt_report"
             model="stock.landed.cost"
-            string="Customs Clearance"
+            string="GOODS RECEIPT REPORT"
             name="destination_cost_customs.goods_receipt_report_template"
             report_type="qweb-pdf"
             file="('GOODS RECEIPT REPORT - %s.pdf' % (object.name))"
