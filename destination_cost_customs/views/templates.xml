@@ -215,7 +215,7 @@
                                         <td>Items: <span t-esc="len(purchase.order_line)"/> </td>
                                         <td><strong>Total RD$</strong></td>
                                         <td class="text-right">
-                                            <span class="text-nowrap" t-field="purchase.amount_total * o.usd_rate"/>
+                                            <span class="text-nowrap" t-esc="purchase.amount_total * o.usd_rate"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -241,7 +241,7 @@
         <report
             id="goods_receipt_report"
             model="stock.landed.cost"
-            string="GOODS RECEIPT REPORT"
+            string="Goods Receipt Report"
             name="destination_cost_customs.goods_receipt_report_template"
             report_type="qweb-pdf"
             file="('GOODS RECEIPT REPORT - %s.pdf' % (object.name))"
