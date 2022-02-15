@@ -212,11 +212,10 @@
                                         </tr>
                                     </tbody>
                                     <tr class="border-black o_total">
-                                        <td>Items: <span t-esc="len(purchase.order_line)"/> </td>
+                                        <td>Items: <span t-esc="len(purchase.order_line)"/></td>
+                                        <br/>
                                         <td><strong>Total RD$</strong></td>
-                                        <td class="text-right">
-                                            <span class="text-nowrap" t-esc="purchase.amount_total * o.usd_rate"/>
-                                        </td>
+                                        <td><span class="text-nowrap" t-esc="purchase.amount_total * o.usd_rate"/></td>
                                     </tr>
                                 </table>
 
@@ -225,6 +224,7 @@
                                         <strong>Processed by:</strong>
                                         <span t-field="o.create_uid"/>
                                     </div>
+                                    <br/>
                                     <div class="col-3 bm-2">
                                         Date:__________________________________
                                     </div>
